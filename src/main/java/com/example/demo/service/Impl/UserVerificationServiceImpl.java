@@ -20,4 +20,9 @@ public class UserVerificationServiceImpl implements UserVerificationService {
     public Boolean checkExistUserWithEmail(String email) {
         return userRepository.findByEmail(email).orElse(null) != null;
     }
+
+    @Override
+    public Boolean checkExistUserWithUsernameAndEmail(String email, String username) {
+        return userRepository.findByEmailOrUsername(email, username).orElse(null) != null;
+    }
 }

@@ -50,11 +50,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserRegisterResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
-        if (userVerificationService.checkExistUserWithUsername(userRegisterRequestDto.getUsername())) {
-            throw new BadRequestException("Username is exist");
-        }
-        if (userVerificationService.checkExistUserWithEmail(userRegisterRequestDto.getEmail())) {
-            throw new BadRequestException("Email is exist");
+        if (userVerificationService.checkExistUserWithUsernameAndEmail(userRegisterRequestDto.getEmail(), userRegisterRequestDto.getUsername())) {
+            throw new BadRequestException("Username or Email is exist");
         }
         User user = modelMapper.map(userRegisterRequestDto, User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
