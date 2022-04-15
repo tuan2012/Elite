@@ -7,6 +7,8 @@ import com.example.demo.dto.response.PageUserResponseDto;
 import com.example.demo.dto.response.UserLoginResponseDto;
 import com.example.demo.dto.response.UserRegisterResponseDto;
 import com.example.demo.dto.response.UserResponeDto;
+import com.example.demo.exceptions.BadRequestException;
+import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.service.UserVerificationService;
@@ -49,10 +51,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserRegisterResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
         if (userVerificationService.checkExistUserWithUsername(userRegisterRequestDto.getUsername())) {
-            throw new IllegalArgumentException("Username is exist");
+            throw new BadRequestException("Username is exist");
         }
         if (userVerificationService.checkExistUserWithEmail(userRegisterRequestDto.getEmail())) {
-            throw new IllegalArgumentException("Email is exist");
+            throw new BadRequestException("Email is exist");
         }
         User user = modelMapper.map(userRegisterRequestDto, User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -64,14 +66,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserLoginResponseDto login(UserLoginRequestDto userLoginRequestDto) {
         Optional<User> userOptional = userRepository.findByEmailOrUsername(userLoginRequestDto.getUsername());
-        User user = userOptional.orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userOptional.orElseThrow(() -> new NotFoundException("Username or Password does not correct"));
         if (passwordEncoder.matches(userLoginRequestDto.getPassword(), user.getPassword())) {
             UserLoginResponseDto loginResponseDto = modelMapper.map(user, UserLoginResponseDto.class);
             loginResponseDto.setAccessToken(jwtUtils.generateAccessToken(user.getUsername()));
             loginResponseDto.setRefreshToken(jwtUtils.generateRefreshToken(user.getUsername()));
             return loginResponseDto;
         } else {
-            throw new RuntimeException("Password is not correct");
+            throw new NotFoundException("Username or Password does not correct");
         }
     }
 
