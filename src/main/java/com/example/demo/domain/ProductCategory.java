@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "")
 public class ProductCategory {
     @Id
     @GeneratedValue(generator = "uuid2")
