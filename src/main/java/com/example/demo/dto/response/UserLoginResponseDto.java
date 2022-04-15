@@ -10,7 +10,7 @@ import java.util.UUID;
 @Setter
 public class UserLoginResponseDto {
     @JsonProperty("user_uuid")
-    private UUID userId;
+    private UUID userUuid;
     private String username;
     private String name;
     private String accessToken;
