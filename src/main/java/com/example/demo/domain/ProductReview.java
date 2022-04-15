@@ -6,15 +6,14 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Role {
+public class ProductReview {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "role_uuid", unique = true, updatable = false)
-    private UUID roleUuid;
-
-    private String name;
-
-    @OneToOne(mappedBy = "role")
-    private User user;
+    @Column(name = "product_review_uuid", unique = true, updatable = false)
+    private UUID productReviewUuid;
+    private String value;
+    @ManyToOne
+    @JoinColumn(name = "product_uuid")
+    private Product product;
 }

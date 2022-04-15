@@ -7,15 +7,15 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class Category {
+public class WareHouse {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "category_uuid", unique = true, updatable = false)
-    private UUID categoryUuid;
+    @Column(name = "warehouse_uuid", unique = true, updatable = false)
+    private UUID warehouseUuid;
     private String name;
     private String code;
-    @OneToMany(mappedBy = "category")
-    private Set<ProductCategory> productCategories;
-
+    private String address;
+    @OneToMany(mappedBy = "wareHouse")
+    private Set<ProductStock> productStocks;
 }
