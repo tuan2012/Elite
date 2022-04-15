@@ -22,9 +22,9 @@ public class UserDetailImpl implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<>();
         //list of permission
-        if (this.user.getPermissions() != null)
-            this.user.getPermissions().forEach(permission -> {
-                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getName());
+        if (this.user.getRole().getRoleDetails() != null)
+            this.user.getRole().getRoleDetails().forEach(roleDetail -> {
+                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roleDetail.getPermission().getName());
                 list.add(grantedAuthority);
             });
         // list of roles

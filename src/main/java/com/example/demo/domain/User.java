@@ -29,12 +29,10 @@ public class User {
     private Boolean isActive = true;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Orders> orders;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private Cart cart;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Permission> permissions;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_uuid")
     private Role role;
 }

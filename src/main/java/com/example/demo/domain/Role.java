@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +20,10 @@ public class Role {
 
     private String name;
 
-    @OneToOne(mappedBy = "role")
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    private Set<User> users;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    private Set<RoleDetail> roleDetails;
+
 }

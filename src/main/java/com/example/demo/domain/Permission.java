@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -19,7 +20,6 @@ public class Permission {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_uuid")
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "permission")
+    private Set<RoleDetail> roleDetails;
 }
