@@ -54,4 +54,20 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
+//    @Override
+//    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+//                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+//
+//        System.out.println("Validation failed");
+//        List<String> errorList = ex
+//                .getBindingResult()
+//                .getFieldErrors()
+//                .stream()
+//                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+//                .collect(Collectors.toList());
+//        ExceptionResponseDto exceptionResponse = new ExceptionResponseDto(HttpStatus.BAD_REQUEST.value(), new Date(), String.join(",", errorList), request.getDescription(false));
+//        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+
+//    }
+
 }

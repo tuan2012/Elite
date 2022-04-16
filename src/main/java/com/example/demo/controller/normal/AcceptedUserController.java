@@ -26,7 +26,7 @@ public class AcceptedUserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserLoginResponseDto> login(@RequestBody UserLoginRequestDto requestDto) {
+    public ResponseEntity<UserLoginResponseDto> login(@Validated @RequestBody UserLoginRequestDto requestDto) {
         return ResponseEntity.ok(userService.login(requestDto));
     }
 
