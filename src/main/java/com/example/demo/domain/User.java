@@ -12,7 +12,8 @@ import java.util.UUID;
 @Table(name = "users")
 @Getter
 @Setter
-public class User {
+public class User extends Auditable<String> {
+
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

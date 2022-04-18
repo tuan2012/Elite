@@ -1,5 +1,6 @@
 package com.example.demo.filter;
 
+import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.security.UserDetailServiceImpl;
 import com.example.demo.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
@@ -36,13 +37,13 @@ public class RequestFilter extends OncePerRequestFilter {
                 String jwtToken = requestTokenHeader.substring(7);
                 if (jwtUtils.isTokenExpired(jwtToken)) {
 //                    throw new ExpiredException("Token is expired");
-                    throw new RuntimeException("Token is expired");
+                    throw new BadRequestException("Token is expired");
                 }
                 username = jwtUtils.getUsernameFromToken(jwtToken);
             } else {
                 logger.warn("JWT Token does not begin with Bearer String");
 //                throw new InvalidFormatException("Jwt Token does not begin with Bearer String");
-                throw new RuntimeException("Jwt Token does not begin with Bearer String");
+                throw new BadRequestException("Jwt Token does not begin with Bearer String");
             }
 
             // Once we get the token validate it.

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

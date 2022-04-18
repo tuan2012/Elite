@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "cart")
-public class Cart {
+public class Cart extends Auditable<String> {
     public Cart() {
         super();
     }

@@ -11,7 +11,7 @@ import java.util.UUID;
 @Table(name = "price_history")
 @Getter
 @Setter
-public class PriceHistory {
+public class PriceHistory extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
