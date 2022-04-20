@@ -27,7 +27,7 @@ public class UserDetailImpl implements UserDetails {
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roleDetail.getPermission().getName());
                 list.add(grantedAuthority);
             });
-        // list of roles
+//         list of roles
         if (this.user.getRole() != null) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + this.user.getRole().getName());
             list.add(grantedAuthority);

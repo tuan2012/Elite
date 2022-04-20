@@ -39,15 +39,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
         // Set session management to stateless
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // Set unauthorized requests exception handler
 
         // Set permissions on endpoints
         http.authorizeRequests()
-                .antMatchers("/v3/api-docs/**", "/apt/**").permitAll()
-//                .anyRequest().authenticated();
+                .antMatchers("/api-docs/**", "/apt/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
-        // Add JWT token filter
+        // Set unauthorized requests exception handler
         http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 }

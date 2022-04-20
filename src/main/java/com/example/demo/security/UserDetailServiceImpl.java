@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.domain.User;
+import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
-        return new UserDetailImpl(user.get());
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        User user = userOpt.orElseThrow(() -> new NotFoundException("User not found"));
+        return new UserDetailImpl(user);
     }
 }
