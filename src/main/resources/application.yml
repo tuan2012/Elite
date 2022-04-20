@@ -1,5 +1,7 @@
 server:
   port: 8000
+  servlet:
+    context-path: /api/v1
 spring:
   datasource:
     driverClassName: ${DB_DRIVER_CLASS_NAME:org.postgresql.Driver}
@@ -10,8 +12,12 @@ spring:
     hibernate.ddl-auto: create
     generate-ddl: true
     show-sql: true
-  application:
-    context-path: /api/v1/
+
+springdoc:
+  api-docs:
+    path: /api-docs/v3
+  swagger-ui:
+    path: /api-docs/swagger-ui-custom.html
 com:
   example:
     demo:
