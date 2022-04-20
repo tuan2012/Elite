@@ -1,10 +1,8 @@
 package com.example.demo.utils;
 
 import com.example.demo.dto.response.UserLoginResponseDto;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureException;
+import com.example.demo.exceptions.ExpiredException;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -35,14 +33,30 @@ public class JwtUtils {
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
+        if (claims == null) {
+            throw new RuntimeException("Token is empty");
+        }
         return claimsResolver.apply(claims);
     }
 
     //for retrieving any information from token we will need the secret key
-    private Claims getAllClaimsFromToken(String token) throws SignatureException, ExpiredJwtException {
-        return Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
-                .build().parseClaimsJws(token).getBody();
+    private Claims getAllClaimsFromToken(String token) {
+        Claims claims = null;
+        try {
+            claims = Jwts.parserBuilder()
+                    .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
+                    .build().parseClaimsJws(token).getBody();
+
+        } catch (ExpiredJwtException e) {
+            throw new ExpiredException("Expired JWT token");
+        } catch (UnsupportedJwtException e) {
+            throw new UnsupportedJwtException("Unsupported JWT token");
+        } catch (MalformedJwtException e) {
+            throw new MalformedJwtException("Invalid JWT token");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("JWT claims string is empty.");
+        }
+        return claims;
     }
 
     //check if the token has expired
