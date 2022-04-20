@@ -13,6 +13,8 @@ public class UserLoginResponseDto {
     private UUID userUuid;
     private String username;
     private String name;
+    @JsonProperty("access_token")
     private String accessToken;
+    @JsonProperty("refresh_token")
     private String refreshToken;
 }

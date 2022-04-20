@@ -1,6 +1,7 @@
 package com.example.demo.controller.normal;
 
 import com.example.demo.dto.request.UserLoginRequestDto;
+import com.example.demo.dto.request.UserRefreshTokenDto;
 import com.example.demo.dto.request.UserRegisterRequestDto;
 import com.example.demo.dto.response.UserLoginResponseDto;
 import com.example.demo.dto.response.UserRegisterResponseDto;
@@ -22,12 +23,20 @@ public class AcceptedUserController {
 
     @PostMapping("/register")
     public ResponseEntity<UserRegisterResponseDto> register(@Validated @RequestBody UserRegisterRequestDto requestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.register(requestDto));
+        userService.registerAdmin(requestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(requestDto));
+
     }
 
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDto> login(@Validated @RequestBody UserLoginRequestDto requestDto) {
         return ResponseEntity.ok(userService.login(requestDto));
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<UserLoginResponseDto> refresh(@Validated @RequestBody UserRefreshTokenDto refreshTokenDto) {
+        return ResponseEntity.ok(userService.refresh(refreshTokenDto.getRefreshToken()));
+    }
+
 
 }

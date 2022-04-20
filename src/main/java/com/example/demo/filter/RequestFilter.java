@@ -1,6 +1,5 @@
 package com.example.demo.filter;
 
-import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.security.UserDetailServiceImpl;
 import com.example.demo.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
@@ -27,27 +26,20 @@ public class RequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (!request.getRequestURI().contains("/v3/api-docs") && !request.getRequestURI().contains("/apt/")) {
+        if (!request.getRequestURI().contains("/api-docs/") && !request.getRequestURI().contains("/apt/")) {
             final String requestTokenHeader = request.getHeader("Authorization");
-            String username = null;
+            String username = "";
 
             // JWT Token is in the form "Bearer token". Remove Bearer word and get
             // only the Token
             if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
                 String jwtToken = requestTokenHeader.substring(7);
-                if (jwtUtils.isTokenExpired(jwtToken)) {
-//                    throw new ExpiredException("Token is expired");
-                    throw new BadRequestException("Token is expired");
-                }
+
                 username = jwtUtils.getUsernameFromToken(jwtToken);
-            } else {
-                logger.warn("JWT Token does not begin with Bearer String");
-//                throw new InvalidFormatException("Jwt Token does not begin with Bearer String");
-                throw new BadRequestException("Jwt Token does not begin with Bearer String");
             }
 
             // Once we get the token validate it.
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            if (!username.isEmpty() && SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 UserDetails userDetails = userDetailService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
