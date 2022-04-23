@@ -45,7 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api-docs/**", "/apt/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
-
         // Set unauthorized requests exception handler
         http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
     }
