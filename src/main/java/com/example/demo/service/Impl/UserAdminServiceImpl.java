@@ -3,7 +3,7 @@ package com.example.demo.service.Impl;
 import com.example.demo.domain.User;
 import com.example.demo.dto.request.UserFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
-import com.example.demo.dto.response.UserResponeDto;
+import com.example.demo.dto.response.UserResponseListDto;
 import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.service.UserAdminService;
 import com.example.demo.service.UserCRUDService;
@@ -17,8 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -66,16 +66,16 @@ public class UserAdminServiceImpl implements UserAdminService {
 
 
     @Override
-    public PageUserResponseDto<UserResponeDto> getUsers(int page, int size, String sortType, String sortBy, UserFilterDto userFilterDto) {
+    public PageUserResponseDto getUsers(int page, int size, String sortType, String sortBy, UserFilterDto userFilterDto) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortType.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
 
         Page<User> userPage = userCRUDService.findAll(new UserSpecification(userFilterDto), pageable);
-        PageUserResponseDto<UserResponeDto> pageUserResponseDto = new PageUserResponseDto<>();
+        PageUserResponseDto pageUserResponseDto = new PageUserResponseDto<>();
         pageUserResponseDto.setPage(page);
         pageUserResponseDto.setSize(size);
         pageUserResponseDto.setTotalPages(userPage.getTotalPages());
         pageUserResponseDto.setTotalElements(userPage.getTotalElements());
-        pageUserResponseDto.setElements(modelMapper.map(userPage.getContent(), List.class));
+        pageUserResponseDto.setElements(userPage.stream().map(user -> modelMapper.map(user, UserResponseListDto.class)).collect(Collectors.toList()));
         return pageUserResponseDto;
     }
 }

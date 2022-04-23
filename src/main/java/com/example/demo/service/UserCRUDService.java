@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.response.UserResponeDto;
+import com.example.demo.dto.response.UserResponseListDto;
 
 import java.util.UUID;
 
 public interface UserCRUDService extends CRUDService<User, UUID> {
-    UserResponeDto getUser(UUID userId);
+    UserResponseListDto getUser(UUID userId);
 
     String getUserName(UUID userId);
 

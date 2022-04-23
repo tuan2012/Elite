@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.User;
 import com.example.demo.dto.request.UserFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
-import com.example.demo.dto.response.UserResponeDto;
 
 import java.util.UUID;
 
@@ -14,5 +14,5 @@ public interface UserAdminService {
 
     Boolean activeUser(UUID userId);
 
-    PageUserResponseDto<UserResponeDto> getUsers(int page, int size, String sortType, String sortBy, UserFilterDto userFilterDto);
+    PageUserResponseDto<User> getUsers(int page, int size, String sortType, String sortBy, UserFilterDto userFilterDto);
 }

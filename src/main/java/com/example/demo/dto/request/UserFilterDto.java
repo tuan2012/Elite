@@ -7,4 +7,6 @@ public class UserFilterDto {
     private String name;
     private String email;
     private String username;
+    private Boolean active;
+    private Boolean deleted;
 }

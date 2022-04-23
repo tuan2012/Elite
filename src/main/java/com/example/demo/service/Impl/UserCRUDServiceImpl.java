@@ -1,7 +1,7 @@
 package com.example.demo.service.Impl;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.response.UserResponeDto;
+import com.example.demo.dto.response.UserResponseListDto;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserCRUDService;
@@ -27,9 +27,9 @@ public class UserCRUDServiceImpl implements UserCRUDService {
     }
 
     @Override
-    public UserResponeDto getUser(UUID userId) {
+    public UserResponseListDto getUser(UUID userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
-        return modelMapper.map(user, UserResponeDto.class);
+        return modelMapper.map(user, UserResponseListDto.class);
     }
 
     @Override
