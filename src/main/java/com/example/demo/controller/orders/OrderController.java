@@ -1,4 +1,4 @@
-package com.example.demo.controller.normal;
+package com.example.demo.controller.orders;
 
 import com.example.demo.domain.Orders;
 import com.example.demo.dto.request.OrdersFilterDto;

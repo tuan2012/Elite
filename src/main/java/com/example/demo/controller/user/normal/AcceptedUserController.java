@@ -1,4 +1,4 @@
-package com.example.demo.controller.normal;
+package com.example.demo.controller.user.normal;
 
 import com.example.demo.dto.request.UserLoginRequestDto;
 import com.example.demo.dto.request.UserRefreshTokenDto;

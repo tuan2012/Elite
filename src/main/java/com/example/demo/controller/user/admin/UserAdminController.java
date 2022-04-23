@@ -1,4 +1,4 @@
-package com.example.demo.controller.admin;
+package com.example.demo.controller.user.admin;
 
 import com.example.demo.dto.request.UserFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;

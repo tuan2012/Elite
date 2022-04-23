@@ -43,7 +43,7 @@ public class User extends Auditable<String> implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Orders> orders;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private Cart cart;
 
     @ManyToOne(cascade = {CascadeType.ALL})

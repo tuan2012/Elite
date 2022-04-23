@@ -1,4 +1,4 @@
-package com.example.demo.controller.normal;
+package com.example.demo.controller.user.normal;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

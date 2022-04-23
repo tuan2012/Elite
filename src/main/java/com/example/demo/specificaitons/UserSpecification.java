@@ -32,11 +32,11 @@ public class UserSpecification implements Specification<User> {
         if (criteria.getEmail() != null) {
             predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("email"), new StringBuilder().append("%").append(criteria.getEmail()).append("%").toString())));
         }
-        if (criteria.getIsDeleted() != null) {
-            predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("isDeleted"), criteria.getIsDeleted())));
+        if (criteria.getActive() != null) {
+            predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("isDeleted"), criteria.getActive())));
         }
-        if (criteria.getIsActive() != null) {
-            predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("isActive"), criteria.getIsActive())));
+        if (criteria.getDeleted() != null) {
+            predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("isActive"), criteria.getDeleted())));
         }
 
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
