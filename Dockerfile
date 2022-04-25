@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine as build
+FROM adoptopenjdk/openjdk11:ubi as build
 WORKDIR /workspace/app
 
 COPY mvnw ./
@@ -8,7 +8,7 @@ COPY src src
 RUN chmod +x ./mvnw
 RUN ./mvnw clean install package -Dmaven.test.skip=true
 
-FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk11:ubi
 WORKDIR /workspace/app
 COPY --from=build /app/target/*.jar ./
 
