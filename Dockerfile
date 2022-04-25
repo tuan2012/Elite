@@ -6,7 +6,6 @@ COPY .mvn .mvn
 COPY pom.xml ./
 COPY src src
 RUN chmod +x ./mvnw
-RUN ./mvnw package
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
@@ -15,5 +14,6 @@ ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+RUN ./mvnw package
 EXPOSE 8000
 ENTRYPOINT ["java","-cp","app:app/lib/*","demo.Application"]
