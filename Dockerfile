@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:ubi as build
+FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine as build
 WORKDIR /workspace/app
 
 COPY mvnw ./
@@ -6,9 +6,9 @@ COPY .mvn .mvn
 COPY pom.xml ./
 COPY src src
 RUN chmod +x ./mvnw
-RUN ./mvnw package
+RUN ./mvnw clean install package
 
-FROM adoptopenjdk/openjdk11:ubi
+FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine
 WORKDIR /workspace/app
 COPY --from=build /app/target/*.jar ./
 
