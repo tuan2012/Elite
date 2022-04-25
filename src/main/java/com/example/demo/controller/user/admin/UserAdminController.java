@@ -1,8 +1,8 @@
 package com.example.demo.controller.user.admin;
 
-import com.example.demo.dto.request.UserFilterDto;
+import com.example.demo.dto.filter.UserFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
-import com.example.demo.service.UserAdminService;
+import com.example.demo.service.user.UserAdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.service.user;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.request.UserFilterDto;
+import com.example.demo.dto.filter.UserFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
 
 import java.util.UUID;

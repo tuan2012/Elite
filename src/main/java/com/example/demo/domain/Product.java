@@ -16,8 +16,8 @@ public class Product extends Auditable<String> {
     private UUID productUuid;
     private String name;
     private String code;
+    private String shortDescription;
     private String description;
-
     private int rating;
     private int isDeleted;
     @OneToMany(mappedBy = "product")

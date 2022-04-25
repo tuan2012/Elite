@@ -5,7 +5,7 @@ import com.example.demo.dto.request.UserRefreshTokenDto;
 import com.example.demo.dto.request.UserRegisterRequestDto;
 import com.example.demo.dto.response.UserLoginResponseDto;
 import com.example.demo.dto.response.UserRegisterResponseDto;
-import com.example.demo.service.UserService;
+import com.example.demo.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

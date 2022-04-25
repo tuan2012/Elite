@@ -1,10 +1,10 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.user.Impl;
 
 import com.example.demo.domain.User;
 import com.example.demo.dto.response.UserResponseListDto;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserCRUDService;
+import com.example.demo.service.user.UserCRUDService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;

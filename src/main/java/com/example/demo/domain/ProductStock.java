@@ -16,8 +16,8 @@ public class ProductStock extends Auditable<String> {
     @JoinColumn(name = "product_uuid")
     private Product product;
     @ManyToOne
-    @JoinColumn(name = "warehoue_uuid")
-    private WareHouse wareHouse;
+    @JoinColumn(name = "warehouse_uuid")
+    private Warehouse warehouse;
 
     private int stock;
 

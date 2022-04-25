@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Orders;
-import com.example.demo.dto.request.OrdersFilterDto;
+import com.example.demo.dto.filter.OrdersFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
 
 public interface OrdersService {

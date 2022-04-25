@@ -1,12 +1,12 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.user.Impl;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.request.UserFilterDto;
+import com.example.demo.dto.filter.UserFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
 import com.example.demo.dto.response.UserResponseListDto;
 import com.example.demo.exceptions.BadRequestException;
-import com.example.demo.service.UserAdminService;
-import com.example.demo.service.UserCRUDService;
+import com.example.demo.service.user.UserAdminService;
+import com.example.demo.service.user.UserCRUDService;
 import com.example.demo.specificaitons.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

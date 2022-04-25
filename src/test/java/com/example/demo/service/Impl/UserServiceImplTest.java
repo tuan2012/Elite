@@ -4,7 +4,7 @@
 //import com.example.demo.dto.request.UserRegisterRequestDto;
 //import com.example.demo.dto.response.UserRegisterResponseDto;
 //import com.example.demo.repository.UserRepository;
-//import com.example.demo.service.UserService;
+//import com.example.demo.service.user.UserService;
 //import com.example.demo.service.UserVerificationService;
 //import com.example.demo.utils.JwtUtils;
 //import org.junit.jupiter.api.BeforeEach;

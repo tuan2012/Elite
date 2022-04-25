@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.user;
 
 import com.example.demo.domain.User;
 import com.example.demo.dto.response.UserResponseListDto;
+import com.example.demo.service.CRUDService;
 
 import java.util.UUID;
 

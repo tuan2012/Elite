@@ -1,4 +1,4 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.user.Impl;
 
 import com.example.demo.constants.Roles;
 import com.example.demo.domain.Role;
@@ -11,9 +11,9 @@ import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.exceptions.UserBlockedException;
 import com.example.demo.repository.RoleRepository;
-import com.example.demo.service.UserCRUDService;
-import com.example.demo.service.UserService;
 import com.example.demo.service.UserVerificationService;
+import com.example.demo.service.user.UserCRUDService;
+import com.example.demo.service.user.UserService;
 import com.example.demo.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

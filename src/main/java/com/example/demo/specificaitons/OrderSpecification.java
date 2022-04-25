@@ -1,7 +1,7 @@
 package com.example.demo.specificaitons;
 
 import com.example.demo.domain.Orders;
-import com.example.demo.dto.request.OrdersFilterDto;
+import com.example.demo.dto.filter.OrdersFilterDto;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;

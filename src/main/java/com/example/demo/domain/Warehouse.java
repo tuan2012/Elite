@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class WareHouse extends Auditable<String> {
+public class Warehouse extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -16,6 +16,7 @@ public class WareHouse extends Auditable<String> {
     private String name;
     private String code;
     private String address;
-    @OneToMany(mappedBy = "wareHouse")
+    private int priority;
+    @OneToMany(mappedBy = "warehouse")
     private Set<ProductStock> productStocks;
 }

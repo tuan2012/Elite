@@ -1,7 +1,7 @@
 package com.example.demo.controller.orders;
 
 import com.example.demo.domain.Orders;
-import com.example.demo.dto.request.OrdersFilterDto;
+import com.example.demo.dto.filter.OrdersFilterDto;
 import com.example.demo.dto.response.PageUserResponseDto;
 import com.example.demo.service.OrdersService;
 import lombok.RequiredArgsConstructor;
