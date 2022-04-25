@@ -6,7 +6,7 @@ COPY .mvn .mvn
 COPY pom.xml ./
 COPY src src
 RUN chmod +x ./mvnw
-RUN ./mvnw clean install package -Dmaven.test.skip=true
+RUN ./mvnw package -Dmaven.test.skip=true
 
 FROM adoptopenjdk/openjdk11:ubi
 WORKDIR /workspace/app
