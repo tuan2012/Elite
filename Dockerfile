@@ -6,14 +6,11 @@ COPY .mvn .mvn
 COPY pom.xml ./
 COPY src src
 RUN chmod +x ./mvnw
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN ./mvnw clean install package -Dmaven.test.skip=true
 
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG DEPENDENCY=/workspace/app/target/dependency
-COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-RUN ./mvnw package
+WORKDIR /workspace/app
+COPY --from=build /app/target/*.jar ./
+
 EXPOSE 8000
-ENTRYPOINT ["java","-cp","app:app/lib/*","demo.Application"]
+ENTRYPOINT ["java","-jar","/workspace/app/demo-0.0.1-SNAPSHOT.jar"]
