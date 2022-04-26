@@ -1,9 +1,9 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.role.Impl;
 
 import com.example.demo.domain.Role;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.RoleRepository;
-import com.example.demo.service.RoleService;
+import com.example.demo.service.role.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

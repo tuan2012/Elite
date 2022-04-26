@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,6 +9,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "cart")
 public class Cart extends Auditable<String> {
     public Cart() {

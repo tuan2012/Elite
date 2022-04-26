@@ -1,9 +1,9 @@
 package com.example.demo.controller.user.normal;
 
-import com.example.demo.dto.request.UserLoginRequestDto;
-import com.example.demo.dto.request.UserRegisterRequestDto;
-import com.example.demo.dto.response.UserLoginResponseDto;
-import com.example.demo.dto.response.UserRegisterResponseDto;
+import com.example.demo.dto.request.user.UserLoginRequestDto;
+import com.example.demo.dto.request.user.UserRegisterRequestDto;
+import com.example.demo.dto.response.user.UserLoginResponseDto;
+import com.example.demo.dto.response.user.UserRegisterResponseDto;
 import com.example.demo.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

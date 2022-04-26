@@ -1,7 +1,7 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.user.Impl;
 
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserVerificationService;
+import com.example.demo.service.user.UserVerificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

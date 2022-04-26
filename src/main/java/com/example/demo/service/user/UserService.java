@@ -1,10 +1,10 @@
 package com.example.demo.service.user;
 
 import com.example.demo.domain.Role;
-import com.example.demo.dto.request.UserLoginRequestDto;
-import com.example.demo.dto.request.UserRegisterRequestDto;
-import com.example.demo.dto.response.UserLoginResponseDto;
-import com.example.demo.dto.response.UserRegisterResponseDto;
+import com.example.demo.dto.request.user.UserLoginRequestDto;
+import com.example.demo.dto.request.user.UserRegisterRequestDto;
+import com.example.demo.dto.response.user.UserLoginResponseDto;
+import com.example.demo.dto.response.user.UserRegisterResponseDto;
 
 public interface UserService {
     UserRegisterResponseDto registerUser(UserRegisterRequestDto userRegisterRequestDto);

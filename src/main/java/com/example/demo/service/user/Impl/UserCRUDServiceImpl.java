@@ -1,7 +1,7 @@
 package com.example.demo.service.user.Impl;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.response.UserResponseListDto;
+import com.example.demo.dto.response.user.UserResponseListDto;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.user.UserCRUDService;

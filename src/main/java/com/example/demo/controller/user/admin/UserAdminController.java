@@ -1,6 +1,6 @@
 package com.example.demo.controller.user.admin;
 
-import com.example.demo.dto.response.PageUserResponseDto;
+import com.example.demo.dto.response.PageResponseDto;
 import com.example.demo.service.user.UserAdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,11 @@ public class UserAdminController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<PageUserResponseDto> getUsers(@RequestParam(value = "search", required = false) String search,
-                                                        @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                                                        @RequestParam(value = "size", required = false, defaultValue = "4") int size,
-                                                        @RequestParam(value = "sortBy", required = false, defaultValue = "createdDate") String sortBy,
-                                                        @RequestParam(value = "sortType", required = false, defaultValue = "desc") String sortType) {
+    public ResponseEntity<PageResponseDto> getUsers(@RequestParam(value = "search", required = false) String search,
+                                                    @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                                    @RequestParam(value = "size", required = false, defaultValue = "4") int size,
+                                                    @RequestParam(value = "sortBy", required = false, defaultValue = "createdDate") String sortBy,
+                                                    @RequestParam(value = "sortType", required = false, defaultValue = "desc") String sortType) {
         return ResponseEntity.ok(userAdminService.getUsers(page, size, sortType, sortBy, search));
     }
 

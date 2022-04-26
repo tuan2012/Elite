@@ -1,7 +1,7 @@
 package com.example.demo.controller.user.normal;
 
-import com.example.demo.dto.request.UserRefreshTokenDto;
-import com.example.demo.dto.response.UserLoginResponseDto;
+import com.example.demo.dto.request.user.UserRefreshTokenDto;
+import com.example.demo.dto.response.user.UserLoginResponseDto;
 import com.example.demo.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

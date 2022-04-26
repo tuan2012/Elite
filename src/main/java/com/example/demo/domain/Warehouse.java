@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,6 +9,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Setter
+@Getter
 public class Warehouse extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -16,6 +20,7 @@ public class Warehouse extends Auditable<String> {
     private String name;
     private String code;
     private String address;
+    private String phone;
     private int priority;
     @OneToMany(mappedBy = "warehouse")
     private Set<ProductStock> productStocks;

@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.user;
 
 public interface UserVerificationService {
     Boolean checkExistUserWithUsername(String username);

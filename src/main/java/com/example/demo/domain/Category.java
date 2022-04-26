@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,6 +9,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Setter
+@Getter
 public class Category extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -17,5 +21,13 @@ public class Category extends Auditable<String> {
     private String code;
     @OneToMany(mappedBy = "category")
     private Set<ProductCategory> productCategories;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    public Set<Category> categories;
+
+
+    @ManyToOne
+    @JoinColumn(name = "category_foreign_uuid")
+    private Category category;
 
 }

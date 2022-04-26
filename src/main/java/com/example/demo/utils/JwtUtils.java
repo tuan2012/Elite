@@ -1,6 +1,6 @@
 package com.example.demo.utils;
 
-import com.example.demo.dto.response.UserLoginResponseDto;
+import com.example.demo.dto.response.user.UserLoginResponseDto;
 import com.example.demo.exceptions.ExpiredException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

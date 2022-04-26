@@ -1,8 +1,8 @@
 package com.example.demo.service.user.Impl;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.response.PageUserResponseDto;
-import com.example.demo.dto.response.UserResponseListDto;
+import com.example.demo.dto.response.PageResponseDto;
+import com.example.demo.dto.response.user.UserResponseListDto;
 import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.service.user.UserAdminService;
 import com.example.demo.service.user.UserCRUDService;
@@ -66,17 +66,17 @@ public class UserAdminServiceImpl implements UserAdminService {
 
 
     @Override
-    public PageUserResponseDto getUsers(int page, int size, String sortType, String sortBy, String search) {
+    public PageResponseDto getUsers(int page, int size, String sortType, String sortBy, String search) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortType.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
 
 
         Page<User> userPage = userCRUDService.findAll(specificationBuilder.createSpecification(search), pageable);
-        PageUserResponseDto pageUserResponseDto = new PageUserResponseDto<>();
-        pageUserResponseDto.setPage(page);
-        pageUserResponseDto.setSize(size);
-        pageUserResponseDto.setTotalPages(userPage.getTotalPages());
-        pageUserResponseDto.setTotalElements(userPage.getNumberOfElements());
-        pageUserResponseDto.setElements(userPage.stream().map(user -> modelMapper.map(user, UserResponseListDto.class)).collect(Collectors.toList()));
-        return pageUserResponseDto;
+        PageResponseDto pageResponseDto = new PageResponseDto<>();
+        pageResponseDto.setPage(page);
+        pageResponseDto.setSize(size);
+        pageResponseDto.setTotalPages(userPage.getTotalPages());
+        pageResponseDto.setTotalElements(userPage.getNumberOfElements());
+        pageResponseDto.setElements(userPage.stream().map(user -> modelMapper.map(user, UserResponseListDto.class)).collect(Collectors.toList()));
+        return pageResponseDto;
     }
 }

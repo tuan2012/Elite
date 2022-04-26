@@ -1,11 +1,11 @@
 //package com.example.demo.service.Impl;
 //
 //import com.example.demo.domain.User;
-//import com.example.demo.dto.request.UserRegisterRequestDto;
-//import com.example.demo.dto.response.UserRegisterResponseDto;
+//import com.example.demo.dto.request.user.UserRegisterRequestDto;
+//import com.example.demo.dto.response.user.UserRegisterResponseDto;
 //import com.example.demo.repository.UserRepository;
 //import com.example.demo.service.user.UserService;
-//import com.example.demo.service.UserVerificationService;
+//import com.example.demo.service.user.UserVerificationService;
 //import com.example.demo.utils.JwtUtils;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
