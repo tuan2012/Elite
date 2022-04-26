@@ -26,7 +26,7 @@ public class RequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (!request.getRequestURI().contains("/api-docs/") && !request.getRequestURI().contains("/apt/")) {
+        if (!request.getRequestURI().contains("/api-docs/") && !request.getRequestURI().contains("/public/")) {
             final String requestTokenHeader = request.getHeader("Authorization");
             String username = "";
 

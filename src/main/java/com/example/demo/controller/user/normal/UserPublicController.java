@@ -1,7 +1,6 @@
 package com.example.demo.controller.user.normal;
 
 import com.example.demo.dto.request.UserLoginRequestDto;
-import com.example.demo.dto.request.UserRefreshTokenDto;
 import com.example.demo.dto.request.UserRegisterRequestDto;
 import com.example.demo.dto.response.UserLoginResponseDto;
 import com.example.demo.dto.response.UserRegisterResponseDto;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/apt/users")
-public class AcceptedUserController {
+@RequestMapping("/public/users")
+public class UserPublicController {
     private final UserService userService;
 
     @PostMapping("/register")
@@ -31,11 +30,6 @@ public class AcceptedUserController {
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDto> login(@Validated @RequestBody UserLoginRequestDto requestDto) {
         return ResponseEntity.ok(userService.login(requestDto));
-    }
-
-    @PostMapping("/refresh")
-    public ResponseEntity<UserLoginResponseDto> refresh(@Validated @RequestBody UserRefreshTokenDto refreshTokenDto) {
-        return ResponseEntity.ok(userService.refresh(refreshTokenDto.getRefreshToken()));
     }
 
 
