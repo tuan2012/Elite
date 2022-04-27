@@ -9,4 +9,4 @@ RUN chmod +x ./mvnw
 RUN ./mvnw clean install package -DskipTests=true
 
 EXPOSE 8000
-ENTRYPOINT ["java","-jar","/workspace/app/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/workspace/app/target/demo-0.0.1-SNAPSHOT.jar"]
