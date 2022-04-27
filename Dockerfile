@@ -1,9 +1,9 @@
 FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine as build
 WORKDIR /workspace/app
 
-COPY mvnw ./
+COPY mvnw .
 COPY .mvn .mvn
-COPY pom.xml ./
+COPY pom.xml .
 COPY src src
 RUN chmod +x ./mvnw
 RUN ./mvnw clean install package -DskipTests=true
