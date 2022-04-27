@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 env:
   IMAGE_NAME: elite-java-ci
-  PATH: /home/cxtuan/elite
+  PROJECT_PATH: /home/cxtuan/elite
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -70,6 +70,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script:
-            cd ${{env.PATH}}
+            cd ${{env.PROJECT_PATH}}
             echo IMAGE:${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest > .env
             docker-compose up -d
