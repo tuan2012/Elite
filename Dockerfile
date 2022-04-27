@@ -8,6 +8,5 @@ COPY src src
 RUN chmod +x ./mvnw
 RUN ./mvnw clean install package -DskipTests=true
 
-COPY /workspace/app/target/*.jar ./
 EXPOSE 8000
 ENTRYPOINT ["java","-jar","/workspace/app/demo-0.0.1-SNAPSHOT.jar"]
