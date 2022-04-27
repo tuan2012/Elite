@@ -7,6 +7,6 @@ COPY pom.xml .
 COPY src src
 RUN chmod +x ./mvnw
 RUN ./mvnw clean install package -DskipTests=true
-
+ENV DB_URL=jdbc:postgresql://localhost:5432/postgres
 EXPOSE 8000
 ENTRYPOINT ["java","-jar","/workspace/app/target/demo-0.0.1-SNAPSHOT.jar"]
