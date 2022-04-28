@@ -71,5 +71,5 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
           script:
             cd ${{env.PROJECT_PATH}} &&
-            echo IMAGE:${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest > .env &&
+            echo IMAGE:${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest >> .env &&
             docker compose up -d
