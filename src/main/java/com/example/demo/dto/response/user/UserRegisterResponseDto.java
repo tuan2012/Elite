@@ -7,9 +7,9 @@ import java.util.UUID;
 @Data
 public class UserRegisterResponseDto {
 
-    private UUID userUuid;
-    private String username;
-    private String password;
-    private String email;
-    private String name;
+    protected UUID userUuid;
+    protected String username;
+    protected String password;
+    protected String email;
+    protected String name;
 }

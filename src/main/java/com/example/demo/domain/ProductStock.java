@@ -16,9 +16,9 @@ public class ProductStock extends Auditable<String> {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "product_stock_uuid", unique = true, updatable = false)
     private UUID productStockUuid;
-    @ManyToOne
-    @JoinColumn(name = "product_uuid")
-    private Product product;
+    //    @ManyToOne
+//    @JoinColumn(name = "product_uuid")
+//    private Product product;
     @ManyToOne
     @JoinColumn(name = "warehouse_uuid")
     private Warehouse warehouse;

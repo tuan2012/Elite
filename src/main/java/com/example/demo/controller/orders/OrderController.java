@@ -2,7 +2,7 @@ package com.example.demo.controller.orders;
 
 import com.example.demo.domain.Orders;
 import com.example.demo.dto.response.PageResponseDto;
-import com.example.demo.service.orders.OrdersService;
+import com.example.demo.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

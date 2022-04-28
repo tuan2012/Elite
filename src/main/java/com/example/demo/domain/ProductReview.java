@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Entity
 @Setter
 @Getter
+@Builder
 public class ProductReview extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")

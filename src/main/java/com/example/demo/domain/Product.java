@@ -22,18 +22,17 @@ public class Product extends Auditable<String> {
     private String code;
     private String shortDescription;
     private String description;
+    private float price;
     private int rating;
     private int isDeleted;
+    private int stock;
     @OneToMany(mappedBy = "product")
     private Set<ProductCategory> productCategories;
     @OneToMany(mappedBy = "product")
     private Set<PriceHistory> priceHistories;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<ProductAttribute> productAttributes;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<ProductStock> productStocks;
+    @OneToMany(mappedBy = "product")
+    private Set<ProductRating> productRatings;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Set<ProductReview> productReviews;

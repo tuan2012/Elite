@@ -1,8 +1,9 @@
 package com.example.demo.controller.user.normal;
 
 import com.example.demo.dto.request.user.UserRefreshTokenDto;
+import com.example.demo.dto.response.ResponseBodyDto;
 import com.example.demo.dto.response.user.UserLoginResponseDto;
-import com.example.demo.service.user.UserService;
+import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,7 +19,10 @@ public class UserController {
     private final UserService userService;
 
     @PutMapping("/refresh-token")
-    public ResponseEntity<UserLoginResponseDto> refresh(@Validated @RequestBody UserRefreshTokenDto refreshTokenDto) {
-        return ResponseEntity.ok(userService.refresh(refreshTokenDto.getRefreshToken()));
+    public ResponseEntity<ResponseBodyDto<UserLoginResponseDto>> refresh(@Validated @RequestBody UserRefreshTokenDto refreshTokenDto) {
+        ResponseBodyDto<UserLoginResponseDto> responseBodyDto = new ResponseBodyDto<>();
+        responseBodyDto.setData(userService.refresh(refreshTokenDto.getRefreshToken()));
+        responseBodyDto.setStatusCode(200);
+        return ResponseEntity.ok(responseBodyDto);
     }
 }

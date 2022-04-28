@@ -16,10 +16,10 @@ public class ProductAttribute extends Auditable<String> {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "product_attribute_uuid", unique = true)
     private String productAttributeUuid;
-
-    @ManyToOne
-    @JoinColumn(name = "product_uuid")
-    private Product product;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "product_uuid")
+//    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "attribute_uuid")
