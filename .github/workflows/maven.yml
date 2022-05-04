@@ -57,7 +57,7 @@ jobs:
           #        cache-from:
           #          - ${{ github.repository }}:${{ github.ref_name }}   # Cache the latest commit
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -71,5 +71,5 @@ jobs:
           KEY: ${{ secrets.SSHKEY }}
           script:
             cd ${{env.PROJECT_PATH}} &&
-            echo IMAGE:${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest >> .env &&
+            echo IMAGE:${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} >> .env &&
             docker compose up -d
