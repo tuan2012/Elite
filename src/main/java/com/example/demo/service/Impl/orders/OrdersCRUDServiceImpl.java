@@ -1,13 +1,14 @@
 package com.example.demo.service.Impl.orders;
 
 import com.example.demo.domain.Orders;
+import com.example.demo.domain.User;
 import com.example.demo.dto.filter.SearchCriteria;
 import com.example.demo.dto.response.PageResponseDto;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.OrdersRepository;
 import com.example.demo.service.OrdersCRUDService;
 import com.example.demo.specifications.SpecificationBuilder;
-import com.example.demo.utils.ParseSearchUtils;
+import com.example.demo.utils.ParseUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrdersCRUDServiceImpl implements OrdersCRUDService {
     private final OrdersRepository ordersRepository;
-    private final ParseSearchUtils parseSearchUtils;
+    private final ParseUtils parseUtils;
     private final SpecificationBuilder specificationBuilder;
 
     @Override
@@ -43,9 +44,12 @@ public class OrdersCRUDServiceImpl implements OrdersCRUDService {
     }
 
     @Override
-    public PageResponseDto<Orders> findAll(int page, int size, String sortType, String sortBy, String search) {
+    public PageResponseDto<Orders> findAll(UUID userUuid, int page, int size, String sortType, String sortBy, String search) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortType.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
-        List<SearchCriteria> searchCriteria = parseSearchUtils.parseSearch(search);
+        List<SearchCriteria> searchCriteria = parseUtils.parseSearch(search);
+        if (userUuid != null) {
+            searchCriteria.add(new SearchCriteria("user", ":", new User(userUuid)));
+        }
         Page<Orders> ordersPage = ordersRepository.findAll(specificationBuilder.createSpecification(searchCriteria), pageable);
         PageResponseDto pageResponseDto = PageResponseDto.builder()
                 .page(page)

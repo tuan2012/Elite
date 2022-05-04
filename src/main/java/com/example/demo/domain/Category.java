@@ -12,6 +12,10 @@ import java.util.UUID;
 @Setter
 @Getter
 public class Category extends Auditable<String> {
+    public Category(UUID categoryUuid) {
+        this.categoryUuid = categoryUuid;
+    }
+
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -30,4 +34,6 @@ public class Category extends Auditable<String> {
     @JoinColumn(name = "category_foreign_uuid")
     private Category category;
 
+    public Category() {
+    }
 }

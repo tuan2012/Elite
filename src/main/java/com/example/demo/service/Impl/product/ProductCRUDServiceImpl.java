@@ -8,7 +8,7 @@ import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.service.ProductCRUDService;
 import com.example.demo.specifications.SpecificationBuilder;
-import com.example.demo.utils.ParseSearchUtils;
+import com.example.demo.utils.ParseUtils;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -28,7 +28,7 @@ public class ProductCRUDServiceImpl implements ProductCRUDService {
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
     private final SpecificationBuilder specificationBuilder;
-    private final ParseSearchUtils parseSearchUtils;
+    private final ParseUtils parseUtils;
 
     @Override
     public Product save(Product product) {
@@ -48,7 +48,7 @@ public class ProductCRUDServiceImpl implements ProductCRUDService {
     @Override
     public PageResponseDto<ProductResponseListDto> getAllProduct(int page, int size, String sortType, String sortBy, String search) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortType.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
-        List<SearchCriteria> searchCriteriaList = parseSearchUtils.parseSearch(search);
+        List<SearchCriteria> searchCriteriaList = parseUtils.parseSearch(search);
         Page<Product> productPage = this.findAll(specificationBuilder.createSpecification(searchCriteriaList), pageable);
         PageResponseDto pageResponseDto = PageResponseDto.builder()
                 .page(page)

@@ -1,14 +1,12 @@
 package com.example.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,6 +15,29 @@ import java.util.UUID;
 @Getter
 @Setter
 public class User extends Auditable<String> implements Serializable {
+
+    public User(UUID userUuid) {
+        this.userUuid = userUuid;
+    }
+
+    public User() {
+        super();
+    }
+
+    public User(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String name, String email, String username, String password, Role role) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -32,14 +53,6 @@ public class User extends Auditable<String> implements Serializable {
     private String password;
     private Boolean isDeleted = false;
     private Boolean isActive = true;
-    @JsonProperty("last_modified_date")
-    private LocalDateTime lastModifiedDate;
-    @JsonProperty("created_date")
-    private LocalDateTime createdDate;
-    @JsonProperty("last_modified_by")
-    private String lastModifiedBy;
-    @JsonProperty("created_by")
-    private String createdBy;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Orders> orders;

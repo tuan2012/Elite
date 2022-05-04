@@ -1,6 +1,6 @@
 package com.example.demo.service.Impl.user;
 
-import com.example.demo.constants.Roles;
+import com.example.demo.constants.RoleConstants;
 import com.example.demo.domain.Role;
 import com.example.demo.domain.User;
 import com.example.demo.dto.request.user.UserLoginRequestDto;
@@ -38,26 +38,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserRegisterResponseDto registerUser(UserRegisterRequestDto userRegisterRequestDto) {
 
-        Optional<Role> roleOpt = roleRepository.findByName(Roles.user);
+        Optional<Role> roleOpt = roleRepository.findByName(RoleConstants.USER);
         if (roleOpt.isPresent()) {
             return register(userRegisterRequestDto, roleOpt.get());
 
         } else {
             Role role = new Role();
-            role.setName(Roles.user);
+            role.setName(RoleConstants.USER);
             return register(userRegisterRequestDto, role);
         }
     }
 
     @Override
     public UserRegisterResponseDto registerAdmin(UserRegisterRequestDto userRegisterRequestDto) {
-        Optional<Role> roleOpt = roleRepository.findByName(Roles.admin);
+        Optional<Role> roleOpt = roleRepository.findByName(RoleConstants.ADMIN);
         if (roleOpt.isPresent()) {
             return register(userRegisterRequestDto, roleOpt.get());
 
         } else {
             Role role = new Role();
-            role.setName(Roles.admin);
+            role.setName(RoleConstants.ADMIN);
             return register(userRegisterRequestDto, role);
         }
     }

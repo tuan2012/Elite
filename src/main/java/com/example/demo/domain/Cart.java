@@ -20,8 +20,8 @@ public class Cart extends Auditable<String> {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "product_uuid", unique = true, updatable = false)
-    private UUID productUuid;
+    @Column(name = "cart_uuid", unique = true, updatable = false)
+    private UUID cartUuid;
     private double totalPrice;
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private Set<CartItems> cartItem;

@@ -9,7 +9,7 @@ import com.example.demo.exceptions.BadRequestException;
 import com.example.demo.service.UserAdminService;
 import com.example.demo.service.UserCRUDService;
 import com.example.demo.specifications.SpecificationBuilder;
-import com.example.demo.utils.ParseSearchUtils;
+import com.example.demo.utils.ParseUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -30,7 +30,7 @@ public class UserAdminServiceImpl implements UserAdminService {
     private final UserCRUDService userCRUDService;
     private final ModelMapper modelMapper;
     private final SpecificationBuilder specificationBuilder;
-    private final ParseSearchUtils parseSearchUtils;
+    private final ParseUtils parseUtils;
 
     @Override
     public UserUpdateResponseDto activeUser(UUID userId) {
@@ -76,7 +76,7 @@ public class UserAdminServiceImpl implements UserAdminService {
     @Override
     public PageResponseDto<UserResponseListDto> getUsers(int page, int size, String sortType, String sortBy, String search) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortType.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortBy));
-        List<SearchCriteria> listSearchCriteria = parseSearchUtils.parseSearch(search);
+        List<SearchCriteria> listSearchCriteria = parseUtils.parseSearch(search);
 
         Page<User> userPage = userCRUDService.findAll(specificationBuilder.createSpecification(listSearchCriteria), pageable);
         PageResponseDto pageResponseDto = PageResponseDto.builder()

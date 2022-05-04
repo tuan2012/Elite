@@ -28,4 +28,5 @@ public class Role extends Auditable<String> {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role", fetch = FetchType.EAGER)
     private Set<RoleDetail> roleDetails;
 
+
 }
