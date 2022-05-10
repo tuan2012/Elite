@@ -11,8 +11,8 @@ RUN ./mvnw clean install package -DskipTests=true
 
 FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
 WORKDIR /workspace/app
-COPY --from=build /workspace/app/target/*.jar ./
+COPY --from=build /workspace/app/target/*.jar .
 ENV DB_URL=jdbc:postgresql://localhost:5432/postgres
 EXPOSE 8000
 
-ENTRYPOINT ["java","-jar","/workspace/app/target/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/workspace/app/demo-0.0.1-SNAPSHOT.jar"]
